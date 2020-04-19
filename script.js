@@ -3,7 +3,8 @@ var forecast = "api.openweathermap.org/data/2.5/forecast?q=" + $("#searchBox").v
 var current = "api.openweathermap.org/data/2.5/weather?q=" + $("#searchBox").val() + "&appid=" + apiKey;
 var searchBox = $("#searchBox");
 var history = $("#history");
-
+var today = new Date();
+var currentDate = today.getMonth() + "/" + today.getDate() + "/" + today.getFullYear();
 
 $(document).ready(function(){
     $("#searchBtn").on("click", function(){
@@ -21,6 +22,16 @@ console.log(currentWeather, currentForecast);
 function showCurrentWeather(){
     $.ajax({url: current, success: function(result){
         $("#todayArea").html(result);
+        // console.log(result)
+        var currentWeatherObject = {
+            city: result.name,
+            date: currentDate,
+            temperature: result.main.temp,
+            humidity: result.main.humidity,
+            wind: result.main.windSpeed,
+            uvIndex: "",
+            uvSeverity: "",
+        }
     }})
 }
 
@@ -29,3 +40,4 @@ function showForecast(){
         $("#forecastArea").html(result);
     }})
 }
+
