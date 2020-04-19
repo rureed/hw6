@@ -11,34 +11,7 @@ $(document).ready(function(){
         var currentForecast =  forecast + $("#searchBox").val() + "&appid=" + apiKey;
 console.log(currentWeath, currentForecast);
 
+
     })
 })
 
-
-//     $("#searchBtn").click(function(){
-//       $.ajax({url: weatherUrl + , success: function(result){
-//         $("#div1").html(result);
-//       }
-//     });
-//     });
-//   });
-
-// function getHistory() {
-//     $("#history")
-// }
-
-// function addHistory() {
-//     $("#history")
-// }
-
-// function getCurrent() {
-
-// }
-
-// function getForecast() {
-
-// }
-
-// api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
-
-// api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
