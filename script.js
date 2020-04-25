@@ -33,7 +33,11 @@ function showCurrentWeather(currentWeather){
             uvSeverity: "",
             currentIcon: result.weather[0].icon
         }
-        // var currentOutput = $(????)
+        var latitude = result.coord.lat;
+        var longitude = response.coord.lon;
+        var uvUrl = "api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longigude + "&appid" +apiKey;
+
+        
     }})
 }
 
