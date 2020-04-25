@@ -1,6 +1,5 @@
 var apiKey = "a37e980e3eb1ba982a16a51051774957";
 var forecast = "api.openweathermap.org/data/2.5/forecast?q=" + $("#searchBox").val() + "&appid=" + apiKey;
-var current = "api.openweathermap.org/data/2.5/weather?q=" + $("#searchBox").val() + "&appid=" + apiKey;
 var searchBox = $("#searchBox");
 var history = $("#history");
 var today = new Date();
@@ -8,10 +7,10 @@ var currentDate = today.getMonth() + "/" + today.getDate() + "/" + today.getFull
 
 $(document).ready(function(){
     $("#searchBtn").on("click", function(){
-        var currentWeather = current;
+        var currentWeather = $("#searchBox").val();
         var currentForecast =  forecast;
     
-    
+    showCurrentWeather(currentWeather)
 
 console.log(currentWeather, currentForecast);
 
@@ -19,19 +18,22 @@ console.log(currentWeather, currentForecast);
     })
 })
 
-function showCurrentWeather(){
+function showCurrentWeather(currentWeather){
+    var current = "http://api.openweathermap.org/data/2.5/weather?q=" + currentWeather + "&appid=" + apiKey;
     $.ajax({url: current, success: function(result){
         $("#todayArea").html(result);
-        // console.log(result)
-        var currentWeatherObject = {
+        console.log(result)
+        var currentWeather = {
             city: result.name,
             date: currentDate,
             temperature: result.main.temp,
             humidity: result.main.humidity,
             wind: result.main.windSpeed,
-            uvIndex: "",
+            uvIndex: 0,
             uvSeverity: "",
+            currentIcon: result.weather[0].icon
         }
+        // var currentOutput = $(????)
     }})
 }
 
