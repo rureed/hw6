@@ -28,14 +28,14 @@ function showCurrentWeather(currentWeather){
             date: currentDate,
             temperature: result.main.temp,
             humidity: result.main.humidity,
-            wind: result.main.windSpeed,
+            wind: result.wind.speed,
             uvIndex: 0,
             uvSeverity: "",
             currentIcon: result.weather[0].icon
         }
         var latitude = result.coord.lat;
         var longitude = result.coord.lon;
-        var uvUrl = "api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid" +apiKey;
+        var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
 
         $.ajax({
             url: uvUrl,
@@ -48,13 +48,13 @@ function showCurrentWeather(currentWeather){
                 currentWeather.uvSeverity = "severe";
             else currentWeather.uvSeverity = "moderate";
         
-            var currentResult = $('<div class="card"><div class="card-body"><h1 class="card-title">' + currentWeather.location + ' ' + currentWeather.date + ' ' +
+            var currentResult = $('<div class="card"><div class="card-body"><h1 class="card-title">' + currentWeather.city + ' ' + currentWeather.date + ' ' +
             '<span class="badge"><img id="weather-icon" src="http://openweathermap.org/img/wn/' + currentWeather.currentIcon + '@2x.png"></span></h1>' +
             '<p class="card-text">Temperature: ' + currentWeather.temperature + ' °F</p>' +
             '<p class="card-text">Humidity: ' + currentWeather.humidity + '%</p>' +
             '<p class="card-text">Wind Speed: ' + currentWeather.wind + ' MPH</p>' +
             '<p class="card-text">UV Index: <span class="badge' + currentWeather.uvSeverity + '">' + currentWeather.uvIndex + '</span>')
-console.log(currentResult)
+console.log(uvResult, currentWeather.city)
             $("#todayArea").append(currentResult);
         })
     }})
