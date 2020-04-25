@@ -37,7 +37,18 @@ function showCurrentWeather(currentWeather){
         var longitude = response.coord.lon;
         var uvUrl = "api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longigude + "&appid" +apiKey;
 
+        $.ajax({
+            url: uvUrl,
+            method: "GET"
+        }).then(function(uvResult){
+            currentWeather.uvIndex = uvResult.value;
+            if (currentWeather.uvIndex <= 2)
+                currentWeather.uvSeverity = "favorable";
+            else if (currentWeather.uvIndex >= 6)
+                currentWeather.uvSeverity = "severe";
+            else currentWeather.uvSeverity = "moderate";
         
+        })
     }})
 }
 

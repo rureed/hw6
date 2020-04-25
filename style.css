@@ -1,11 +1,11 @@
-favorable{
+.favorable{
     background-color: green;
 }
 
-moderate{
+.moderate{
     background-color: yellow;
 }
 
-severe{
+.severe{
     background-color: red;
 }
