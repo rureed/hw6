@@ -1,5 +1,5 @@
 var apiKey = "a37e980e3eb1ba982a16a51051774957";
-var forecast = "api.openweathermap.org/data/2.5/forecast?q=" + $("#searchBox").val() + "&units=imperial&appid=" + apiKey;
+var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + $("#searchBox").val() + "&units=imperial&appid=" + apiKey;
 var searchBox = $("#searchBox");
 var history = $("#history");
 var today = new Date();
