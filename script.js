@@ -19,7 +19,7 @@ console.log(currentWeather, currentForecast);
 })
 
 function showCurrentWeather(currentWeather){
-    var current = "http://api.openweathermap.org/data/2.5/weather?q=" + currentWeather + "&units=imperial&appid=" + apiKey;
+    var current = "https://api.openweathermap.org/data/2.5/weather?q=" + currentWeather + "&units=imperial&appid=" + apiKey;
     $.ajax({url: current, success: function(result){
         $("#todayArea").html(result);
         console.log(result)
@@ -35,7 +35,7 @@ function showCurrentWeather(currentWeather){
         }
         var latitude = result.coord.lat;
         var longitude = result.coord.lon;
-        var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+        var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
 
         $.ajax({
             url: uvUrl,
@@ -49,7 +49,7 @@ function showCurrentWeather(currentWeather){
             else currentWeather.uvSeverity = "moderate";
         
             var currentResult = $('<div class="card"><div class="card-body" style="background-color: lightBlue"><h1 class="card-title">' + currentWeather.city + ' ' + currentWeather.date + ' ' +
-            '<span class="badge"><img id="weather-icon" src="http://openweathermap.org/img/wn/' + currentWeather.currentIcon + '@2x.png"></span></h1>' +
+            '<span class="badge"><img id="weather-icon" src="https://openweathermap.org/img/wn/' + currentWeather.currentIcon + '@2x.png"></span></h1>' +
             '<p class="card-text">Temperature: ' + currentWeather.temperature + ' °F</p>' +
             '<p class="card-text">Humidity: ' + currentWeather.humidity + '%</p>' +
             '<p class="card-text">Wind Speed: ' + currentWeather.wind + ' MPH</p>' +
@@ -80,7 +80,7 @@ function showForecast(){
         
         
         for (var i = 0; i < forecastArray.length; i++) {
-            var forecastResult = $('<div class="col-lg-2 col-sm-3"><span class="badge">' + forecastArray[i].date + '<img class="w-100" src="http://openweathermap.org/img/wn/' + forecastArray[i].icon + '@2x.png">' + 'Temp: ' + forecastArray[i].temperature + '°F' + 'Humidity: ' + forecastArray[i].humidity + '%</span></div>');
+            var forecastResult = $('<div class="col-lg-2 col-sm-3"><span class="badge">' + forecastArray[i].date + '<img class="w-100" src="https://openweathermap.org/img/wn/' + forecastArray[i].icon + '@2x.png">' + 'Temp: ' + forecastArray[i].temperature + '°F' + 'Humidity: ' + forecastArray[i].humidity + '%</span></div>');
             $("#forecastArea").append(forecastResult);
     }
             }
