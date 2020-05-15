@@ -63,7 +63,10 @@ console.log(uvResult, currentWeather.city)
 function showForecast(){
     var forecast = "api.openweathermap.org/data/2.5/forecast?q=" + $("#searchBox").val() + "&units=imperial&appid=" + apiKey;
     var forecastArray = [];
-    $.ajax({url: forecast, success: function(result){
+    $.ajax({
+        url: forecast,
+        method: "GET"
+    }).then(function (result){
         $("#forecastArea").html(result);
         var forecastObject;
         for (var i = 0; i < result.length; i++) {
@@ -74,8 +77,13 @@ function showForecast(){
                 humidity: result.list[i].main.humidity
             };
         forecastArray.push(forecastObject);
-        }
-
-    }})
+        
+        
+        for (var i = 0; i < forecastArray.length; i++) {
+            var forecastResult = $('<div class="col-lg-2 col-sm-3"><span class="badge">' + forecastArray[i].date + '<img class="w-100" src="http://openweathermap.org/img/wn/' + forecastArray[i].icon + '@2x.png">' + 'Temp: ' + forecastArray[i].temperature + '°F' + 'Humidity: ' + forecastArray[i].humidity + '%</span></div>');
+            $("#forecastArea").append(forecastResult);
+    }
+            }
+    })
 }
 
